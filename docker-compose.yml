@@ -28,7 +28,7 @@ services:
 
   servidor_web:
     build:
-      context: ./backend
+      context: ./tecnoreservas-server
     restart: unless-stopped
     environment:
       POSTGRES_DB_SERVER_ADDRESS: postgres
@@ -46,7 +46,7 @@ services:
 
   pagina_web:
     build:
-      context: ./frontend
+      context: ./tecnoreservas-client
       args:
         VITE_API_URL: ${VITE_API_URL}
     restart: unless-stopped
