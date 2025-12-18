@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     ##Entorno de desarrollo IDE
-    url: jdbc:postgresql://${POSTGRES_DB_SERVER_ADDRESS}:${POSTGRES_DB_SERVER_PORT}/postgres
+    url: jdbc:postgresql://${POSTGRES_DB_SERVER_ADDRESS}:${POSTGRES_DB_SERVER_PORT}/${POSTGRES_DB}
 
     #en desarrollo adrian
     #url: jdbc:postgresql://${POSTGRES_DB_SERVER_ADDRESS}${POSTGRES_PASSWORD}&prepareThreshold=0
