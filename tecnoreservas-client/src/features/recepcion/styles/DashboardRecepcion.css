@@ -1,0 +1,174 @@
+/* src/styles/DashboardRecepcion.css */
+
+/* --- Contenedores Principales --- */
+.dashboard-container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.card-style {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin: 0.2rem 1.5rem;
+}
+
+/* --- Grid de Estadísticas --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 0.5rem 1.5rem;
+}
+
+/* --- Sección de Filtros --- */
+.filter-section .section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.filter-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.filter-box {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+.filter-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Colores de Cajas y Labels de Filtros */
+.filter-box-blue { background: linear-gradient(135deg, #e0f2fe, #f0f9ff); border-color: #bae6fd; }
+.label-blue { color: #0369a1; }
+
+.filter-box-purple { background: linear-gradient(135deg, #f3e8ff, #faf5ff); border-color: #e9d5ff; }
+.label-purple { color: #7e22ce; }
+
+.filter-box-green { background: linear-gradient(135deg, #dcfce7, #f0fdf4); border-color: #bbf7d0; }
+.label-green { color: #166534; }
+
+.search-input, .filter-select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.search-input:focus, .filter-select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+/* --- Sección de Pestañas (Tabs) --- */
+.tabs-section {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f3f4f6;
+  border-radius: 999px;
+  padding: 0.4rem;
+    margin: 0.1rem 1.5rem;
+}
+
+.tab-button {
+  flex: 1;
+  text-align: center;
+  padding: 0.7rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4b5563;
+  transition: all 0.3s ease-in-out;
+}
+
+.tab-button.active {
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button.active-all { background: linear-gradient(to right, #3b82f6, #60a5fa); }
+.tab-button.active-today { background: linear-gradient(to right, #10b981, #34d399); }
+.tab-button.active-stats { background: linear-gradient(to right, #8b5cf6, #a78bfa); }
+
+/* --- Área de Contenido de Pestañas --- */
+.appointments-list-section, .statistics-section {
+  border-left: 4px solid;
+}
+.card-border-blue { border-left-color: #3b82f6; }
+.card-border-green { border-left-color: #10b981; }
+.card-border-purple { border-left-color: #8b5cf6; }
+
+.appointments-list-section h4, .statistics-section h4 {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.content-header-blue { color: #2563eb; }
+.content-header-green { color: #059669; }
+.content-header-purple { color: #7c3aed; }
+
+.empty-message {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6b7280;
+  font-style: italic;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+/* --- Estilos específicos para la Pestaña de Estadísticas --- */
+.line-stat-card {
+  background-color: #f8faff;
+  border: 1px solid #e0e7ff;
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.line-stat-card h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.line-stat-details {
+  display: flex;
+  gap: 2rem;
+  color: #4b5563;
+}
+
+.line-stat-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

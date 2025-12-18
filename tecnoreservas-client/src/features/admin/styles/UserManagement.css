@@ -1,0 +1,32 @@
+/* src/features/admin/components/UserManagement.css */
+.management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.management-header h4 { font-size: 1.2rem; font-weight: 600; color: #4f46e5; }
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(to right, #8b5cf6, #c084fc);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); }
+
+.search-bar { position: relative; margin-bottom: 1.5rem; }
+.search-bar .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #9ca3af; }
+.search-bar input { width: 100%; padding: 0.8rem 1rem 0.8rem 3rem; border: 1px solid #e5e7eb; border-radius: 8px; }
+
+.user-list { display: flex; flex-direction: column; gap: 1rem; }
+
+/* Contenedor del spinner para centrarlo en el */
+.no-users-message { display: flex; flex-direction: column; align-items: center; justify-content: center; }

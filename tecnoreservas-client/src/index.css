@@ -1,0 +1,15 @@
+/* src/index.css */
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: system-ui, Arial, sans-serif;
+  background-color: #f4f6f4;
+  color: #333;
+}

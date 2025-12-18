@@ -1,0 +1,32 @@
+:root {
+  /* Colores */
+  --primary: #39a900;
+  --secondary: #24b5d9;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --bg: #f7f7fb;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+
+
+  /* Radios relativos */
+  --radius: 1.2vw;
+  --radius-sm: 0.8vw;
+  --radius-lg: 2vw;
+
+  /* Sombras relativas */
+  --shadow: 0 1vh 2.5vh rgba(0,0,0,.08);
+  --shadow-soft: 0 0.5vh 1.2vh rgba(0,0,0,.06);
+
+  /* Espaciados */
+  --space-1: 1vh;
+  --space-2: 2vh;
+  --space-3: 3vh;
+  --space-4: 4vh;
+
+  /* Tipografía */
+  --fs-base: clamp(0.9rem, 0.8rem + 0.5vw, 1.2rem);
+  --fs-title: clamp(1.4rem, 1rem + 1vw, 2.2rem);
+}

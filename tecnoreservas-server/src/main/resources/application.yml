@@ -1,0 +1,71 @@
+server:
+  http2:
+    enabled: true
+
+spring:
+  datasource:
+    ##Entorno de desarrollo IDE
+    url: jdbc:postgresql://${POSTGRES_DB_SERVER_ADDRESS}:${POSTGRES_DB_SERVER_PORT}/postgres
+
+    #en desarrollo adrian
+    #url: jdbc:postgresql://${POSTGRES_DB_SERVER_ADDRESS}${POSTGRES_PASSWORD}&prepareThreshold=0
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+
+    hikari:
+      pool-name: SpringBootBoilerplateHikariPool
+  jpa:
+    
+    hibernate:
+      ddl-auto: ${JPA_HIBERNATE_DDL_AUTO}
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: false
+  flyway:
+    baseline-on-migrate: true
+  jta:
+    enabled: false
+  messages:
+    basename: messages
+    encoding: UTF-8
+  mvc:
+    locale: es_CO
+    local-resolver: fixed
+
+springdoc:
+  show-actuator: true
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    org.springframework: INFO
+    com.farukgenc.boilerplate.springboot: INFO
+
+## FIXME : Customize JWT token and Swagger information for your application
+
+jwt:
+  secretKey: secret
+  issuer: www.farukgenc.com
+  expirationMinute: 60
+
+swagger:
+  contact-name: Tecnoparque nodo Bogotá
+  contact-mail: soporte-agenda@tecnoparque.com
+  app-name: AgendaPark
+  app-description: "AgendaPark. This project includes : Spring Boot(3.5.0), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok, Swagger (Open API)"
+  app-version: 1.0.0
+  app-license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  app-license: Apache 2.0

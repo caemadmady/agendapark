@@ -1,0 +1,63 @@
+/* src/styles/DashboardAdmin.css */
+
+/* Estilos para las tarjetas de estadísticas del Admin */
+.admin-stat-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ffffff, #f9fafb);
+  border-left-width: 4px;
+}
+
+.card-info .card-title { color: #6b7280; font-weight: 500; }
+.card-info .card-value { font-size: 2.5rem; font-weight: 700; margin: 0.25rem 0; color: #1e293b; }
+.card-info .card-subtitle { font-size: 0.9rem; color: #4b5563; }
+.card-icon-wrapper { font-size: 1rem; padding: 0.6rem; border-radius: 50%; color: white; }
+
+/* Colores para cada tarjeta */
+.card-border-purple { border-left-color: #a78bfa; background: linear-gradient(135deg, #f5f3ff, #faf5ff); }
+.icon-bg-purple { background: linear-gradient(135deg, #a78bfa, #8b5cf6); }
+
+.card-border-blue { border-left-color: #93c5fd; background: linear-gradient(135deg, #eff6ff, #f0f9ff); }
+.icon-bg-blue { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+
+.card-border-green { border-left-color: #86efac; background: linear-gradient(135deg, #f0fdf4, #ecfdf5); }
+.icon-bg-green { background: linear-gradient(135deg, #4ade80, #22c55e); }
+
+.card-border-red { border-left-color: #fca5a5; background: linear-gradient(135deg, #fef2f2, #fff1f2); }
+.icon-bg-red { background: linear-gradient(135deg, #f87171, #ef4444); }
+
+
+/* Estilos para las Pestañas del Admin */
+.tabs-section-admin {
+  display: flex;
+  gap: 0.5rem;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-button-admin {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-button-admin.active {
+  background-color: #ffffff;
+  color: #4f46e5;
+  font-weight: 600;
+  box-shadow: 0 4px B10px rgba(0, 0, 0, 0.08);
+} 

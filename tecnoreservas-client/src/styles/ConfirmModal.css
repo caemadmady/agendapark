@@ -1,0 +1,16 @@
+/* src/components/ui/ConfirmModal.css */
+.confirm-modal { max-width: 400px; text-align: center; }
+.confirm-title { font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem; }
+.confirm-message { color: #4b5563; margin-bottom: 1.5rem; }
+
+.btn-danger {
+  padding: 0.7rem 1.2rem;
+  border: none;
+  background-color: #ef4444;
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn-danger:hover:not(:disabled) { background-color: #dc2626; }
+.btn-danger:disabled { background-color: #fca5a5; cursor: not-allowed; }

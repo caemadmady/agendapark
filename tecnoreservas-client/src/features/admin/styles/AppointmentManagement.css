@@ -1,0 +1,28 @@
+/* src/features/admin/components/AppointmentManagement.css */
+.appointment-management-container .management-header {
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+  border-left: 4px solid #60a5fa;
+  margin-bottom: 1.5rem;
+}
+.appointment-management-container .management-header h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.appointment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/*Contenedor del spinner para centrarlo en el espacio*/
+.no-appointments-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

@@ -1,0 +1,68 @@
+.appointment-card {
+    background-color: #ffffff;
+    border: 1px solid #f3f4f6;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    padding: 1.5rem;
+}
+
+.appointment-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.status-badge { background-color: #dcfce7; color: #166534; }
+.line-badge { background-color: #e0e7ff; color: #4338ca; }
+
+.appointment-card-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #374151;
+    margin: 0.5rem 0;
+}
+
+.detail-icon { color: #6b7280; }
+.people-details { text-align: right; justify-content: flex-end; }
+.people-details .detail-item { flex-direction: row-reverse; }
+
+.appointment-card-footer {
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+}
+
+.equipment-list { margin-top: 0.5rem; }
+
+.equipment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9fafb;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+}
+.equipment-status { font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 12px; }
+.status-disponible { background-color: #d1fae5; color: #065f46; }
+.status-en-uso { background-color: #fee2e2; color: #991b1b; }
+
+.no-equipment { font-style: italic; color: #6b7280; }

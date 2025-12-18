@@ -1,0 +1,917 @@
+@import '../../../styles/variables.css';
+
+/* ===== CONTENEDOR GENERAL ===== */
+.dashboard-container,
+.container-talente {
+    width: 100vw;
+    min-height: 100vh;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f4f6f4;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Logo e información */
+.header-logo,
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-logo img {
+    width: 55px;
+    height: 55px;
+    filter: brightness(0) invert(1);
+}
+
+.header-left h1,
+.header-logo h1 {
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.header-left p,
+.header-logo p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* Usuario y acciones */
+.header-right,
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.username {
+    color: #fff;
+}
+
+.logout-btn {
+    background: white;
+    color: #2196F3;
+    border: none;
+    padding: 0.45rem 0.9rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #f1f5f9;
+    transform: scale(1.05);
+}
+
+/* ===== TARJETAS DE ESTADÍSTICAS (KPIs) ===== */
+.stats-section,
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2vh 8vw;
+    padding: 0 2rem;
+    max-width: 74vw;
+}
+
+.stat-card,
+.kpi1,
+.kpi2,
+.kpi3 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.10vw 0.31vw rgba(0, 0, 0, 0.08);
+    height: 20vh;
+    width: 25vw;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover,
+.kpi1:hover,
+.kpi2:hover,
+.kpi3:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Iconos de las tarjetas */
+.stat-card svg {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.kpi1 img,.kpi2 img,.kpi3 img {
+    width: 20vw;
+    height: 20vh;
+    padding: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Texto de las tarjetas */
+.stat-card div,.texto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stat-card h3,.value {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.stat-card p,.label {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Colores específicos por tipo de tarjeta */
+.stat-card.purple,.kpi1 {
+    background: linear-gradient(135deg, #e4edf7,#ddeaf7 );
+    color: #1f55cf;
+}
+
+.stat-card.green,.kpi2 {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    color: #15803d;
+}
+
+.stat-card.orange,.kpi3 {
+    background: linear-gradient(135deg,#f0e7f9,#e9d5ff);
+    color:#ae76eb;
+}
+
+/* ===== SECCIÓN DEL CALENDARIO ===== */
+.calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.calendar-section {
+    flex: 2;
+    min-width: 600px;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.summary-section {
+    flex: 1;
+    min-width: 280px;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.calendar-section h2,
+.summary-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+    font-weight: 700;
+}
+
+.new-appointment {
+    background: #208941;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.new-appointment:hover {
+    background: hsla(142, 81%, 46%, 0.663);
+    transform: translateY(-2px);
+}
+
+/* ===== ESTILOS DEL CALENDARIO (FullCalendar) ===== */
+.fc {
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 100%;
+    height: auto;
+}
+
+.fc-toolbar-title {
+    color: #111827;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.fc-button {
+    background-color: #069435 !important;   
+    border: none !important;
+    border-radius: 0.5rem !important;
+    font-weight: 500 !important;
+    transition: 0.3s;
+    margin: 0 0.3rem !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.95rem !important;
+}
+
+.fc-button:hover {
+    background-color: #069435 !important;
+}
+
+.fc-toolbar-chunk {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fc-button-group {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.fc-daygrid-day-number {
+    color: #111827;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.fc-event {
+    background-color: #3b82f6 !important;
+    border: none !important;
+    border-radius: 0.4rem !important;
+    font-size: 0.9rem !important;
+    padding: 0.2rem 0.5rem;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    margin-bottom: 1.5rem !important;
+}
+
+/* ===== SECCIÓN MIS CITAS ===== */
+.tal-section {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.Botones {
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    height: 20vh;
+    background-color: #f7f8fb;
+    border-radius: 10vh;
+    padding: 0.5vh;
+}
+
+.boton1,
+.boton2,
+.boton3 {
+    border: none;
+    background-color: #e7e9ed;
+    font-size: 1rem;
+    flex: 1;
+    height: 15vh;
+    cursor: pointer;
+    margin: 0 2vh;
+    border-radius: 10vh;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.boton1:hover {
+    background: linear-gradient(135deg, #faf0ff, #9c1afb);
+    color: white;
+}
+
+.boton1:active {
+    background: linear-gradient(135deg, #faf0ff, #9c1afb);
+    color: white;
+}
+
+.boton2:hover {
+    background: linear-gradient(135deg, #f1ae00, #f54d00);
+    color: white;
+}
+
+.boton2:active {
+    background: linear-gradient(135deg, #f1ae00, #f54d00);
+    color: white;
+}
+
+.boton3:hover {
+    background: linear-gradient(135deg, #dbe5f6, #5164f4);
+    color: white;
+}
+
+.boton3:active {
+    background: linear-gradient(135deg, #b5cbf4, #5164f4);
+    color: white;
+}
+
+/* Estado vacío */
+.empty {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, #faf5ff, #ffffff);
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+
+.empty .icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 0.5rem;
+    background: #e9d5ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty .title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty .empty-desc {
+    color: #64748b;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* ===== BOTONES GENERALES ===== */
+.btn-green {
+    background: var(--success, #22c55e);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-green:hover {
+    background: #16a34a;
+    transform: translateY(-2px);
+}
+
+.btn-ghost {
+    background: #f1f5f9;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-ghost:hover {
+    background: #e2e8f0;
+}
+
+.btn-primary {
+    background: #069435;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.6rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background:#069435;
+    transform: translateY(-2px);
+}
+
+/* ========================= */
+/*        OVERLAY GLASS      */
+/* ========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 23, 23, 0.45); /* vidrio oscuro translúcido */
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+
+  /* Profundidad premium */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.45) inset;
+}
+
+/* ========================= */
+/*          MODAL            */
+/* ========================= */
+
+.modal,
+.modal-content {
+  width: 90%;
+  max-width: 45vw;
+  
+  /* Fondo tipo "milk glass" de iOS */
+  background: rgba(255, 255, 255, 0.75); 
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border-radius: 5vh;                    /* Bordes tipo iPhone */
+  padding: 2rem 2.5rem;
+  
+  /* Sombra suave estilo Apple */
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.20),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+
+  animation: zoomIn 0.35s ease;
+  
+  max-height: 95vh;
+  overflow-y: auto;
+}
+
+/* Scroll elegante */
+.modal::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+  width: .7rem;
+}
+.modal::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 100px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Encabezado del modal */
+.modal-head,
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title,
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #069435;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #555;
+    transition: 0.3s;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: #000;
+    transform: scale(1.1);
+}
+
+/* Descripción del modal */
+.modal-description {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid del formulario */
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Campos del formulario */
+form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #069435;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.small-hint {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+}
+
+/* Fila de fecha y hora */
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.form-row > div {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Ayuda Biotecnología */
+.helper {
+    background: #e0f2fe;
+    border: 1px solid #bae6fd;
+    color: #075985;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+}
+
+/* Footer del modal */
+.modal-footer,
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.cancel-btn {
+    background: white;
+    color: #333;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.submit-btn {
+    background: #069435;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #069435;
+}
+
+.submit-btn:disabled {
+    background: #b9efcb;
+    cursor: not-allowed;
+}
+
+/* ===== EQUIPOS ===== */
+.equipos-wrap {
+    margin-top: 1.5rem;
+}
+
+.equipos-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.equipos-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.equip {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+.equip:hover {
+    border-color: #069435;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.1);
+}
+
+.equip.checked {
+    background: #ecfdf5;
+    border-color: #22c55e;
+}
+
+.equip-name {
+    font-weight: 600;
+}
+
+.badge {
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.equip-desc {
+    margin-top: 0.75rem;
+}
+
+.equip-desc-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #6b7280;
+}
+
+/* Resumen de equipos seleccionados */
+.selected {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.selected-title {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.chip {
+    display: inline-block;
+    background: #d1fae5;
+    color: #065f46;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    margin: 0.25rem;
+    font-weight: 500;
+}
+
+.chip.warn {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .stats-section,
+    .kpis {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-wrapper {
+        flex-direction: column;
+    }
+
+    .calendar-section,
+    .summary-section {
+        min-width: 100%;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-talent,
+    .tal-header {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .modal,
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+/* ===== AGENDA (HEADER COMO LA MAQUETA) ===== */
+.agenda-wrapper {
+  width: 100%;
+}
+
+.agenda-header {
+  width:100vw;
+  height: 20vh ;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.agenda-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.agenda-title h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2937;
+} 
+
+.agenda-icon {
+  font-size: 1.8rem;
+}
+
+.agenda-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.agenda-views {
+  display: inline-flex;
+  background: #f3f4f6;
+  padding: 0.25rem;
+  border-radius: 999px;
+}
+
+.agenda-views button {
+  border: none;
+  background: transparent;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: #374151;
+}
+
+.agenda-views button:hover {
+  background: #e5e7eb;
+}
+
+.agenda-add {
+  padding-inline: 1.3rem;
+}
+
+.agenda-calendar {
+  margin-top: 0.5rem;
+}
+
+.loading-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== PANEL DERECHO (NOTIFICACIONES + RESUMEN) ===== */
+.side-panel {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel-card {
+  background: #ffffff;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.panel-card h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #1f2937;
+}
+
+.notif-date {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.notif-title {
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+}
+
+.notif-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.notif-empty {
+  font-size: 0.95rem;
+  color: #9ca3af;
+}
+
+.summary-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}

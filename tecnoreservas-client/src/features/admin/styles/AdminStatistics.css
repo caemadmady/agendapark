@@ -1,0 +1,283 @@
+/* src/features/admin/components/AdminStatistics.css */
+
+/* Variables para mantener la consistencia en el espaciado y bordes */
+:root {
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --border-radius-card: 16px;
+  --color-text-primary: #1f2937; /* Gris oscuro */
+  --color-text-secondary: #6b7280; /* Gris medio */
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-statistics-container {
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/* Tarjeta Principal de la Sección (Line Card) */
+.line-section-card {
+  border-radius: var(--border-radius-card);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid #e5e7eb; /* Borde más claro */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-base); /* Sombra suave para elevación */
+}
+
+/* Efecto hover sutil para la tarjeta principal */
+.line-section-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.line-header {
+  display: flex;
+  /* Alineación vertical clave */
+  align-items: center; 
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.line-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  /* Propiedades añadidas para control de espacio */
+  max-width: 40%; 
+  min-width: 200px;
+  flex-shrink: 0; 
+}
+
+/* Contenedor para agrupar y alinear los botones */
+.line-actions-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; 
+}
+
+.line-key-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  background-color: #f3f4f6;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.025em;
+  /* Asegura que el badge no se reduzca */
+  flex-shrink: 0;
+}
+
+/* Fondos de gradiente más suaves y modernos */
+.bg-gradient-biotecnología { background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+.bg-gradient-electrónica { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+.bg-gradient-ingeniería-y-diseño { background: linear-gradient(135deg, #fffbeb, #fef3c7); }
+.bg-gradient-tics { background: linear-gradient(135deg, #f5f3ff, #ede9fe); }
+
+/* Grid interno para las tarjetas de estadísticas */
+.stats-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+}
+
+/* Estilos para el componente StatItem */
+.stat-item-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: var(--spacing-sm);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+  transition: transform 0.2s ease;
+}
+
+.stat-item-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.stat-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.15rem;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Colores más vibrantes y consistentes */
+.color-blue { color: #3b82f6; }
+.color-green { color: #10b981; }
+.color-purple { color: #8b5cf6; }
+.color-orange { color: #f59e0b; }
+.color-red { color: #ef4444; }
+
+/* Estilos para la lista de elementos (Talentos, Expertos, Reservas) */
+.stat-item-list {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: var(--spacing-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+  transition: all 0.3s ease;
+  animation: slideDown 0.3s ease;
+}
+
+.stat-item-list:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border-color: #e5e7eb;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-list-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #36a000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-list-item {
+  padding: 0.75rem var(--spacing-sm);
+  background-color: #f9fbfa;
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-left: 3px solid #36a000;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-list-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(54, 160, 0, 0.1), transparent);
+  transition: left 0.3s ease;
+}
+
+.stat-list-item:hover {
+  background-color: #35a0001c;
+  border-left-color: #36a000;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(59, 246, 190, 0.15);
+}
+
+.stat-list-item:hover::before {
+  left: 100%;
+}
+
+.stat-list-item:active {
+  transform: translateX(2px);
+  background-color: #dbeafe;
+}
+
+
+.line-header {
+  display: flex;
+  align-items: center; 
+  /* Permitimos que los elementos salten de línea en pantallas pequeñas */
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #e5e7eb;
+  /* Añadimos un pequeño espacio vertical entre las líneas si hay 'wrap' */
+  gap: 0.5rem 0; 
+}
+
+.line-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  /* El título siempre ocupará el ancho que necesite en la línea */
+  flex-grow: 1; /* Permite que el título crezca un poco si hay espacio */
+  flex-basis: auto; /* Permite que el título determine su propio ancho base */
+  min-width: 150px; /* Ancho mínimo para legibilidad en móvil */
+}
+
+/* Contenedor de Acciones (Botones) */
+.line-actions-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; 
+  /* Por defecto, ocupa todo el ancho restante disponible */
+  flex-grow: 1;
+  /* Permite que los botones ocupen el ancho total de una nueva línea en móvil */
+  flex-basis: 100%; 
+  /* En móvil, los botones se justificarán para llenar el espacio */
+  justify-content: space-between;
+  order: 3; /* Asegura que el contenedor de acciones quede debajo del título y el badge en móvil */
+}
+
+.line-key-badge {
+  /* ... (mantener estilos del badge) ... */
+  /* Aseguramos que el badge esté junto al título en móvil (orden 2) */
+  order: 2; 
+}
+
+
+/* 🖥️ Media Query para Desktop/Tablet (pantallas >= 768px) 🖥️ */
+@media (min-width: 768px) {
+    .line-header {
+        /* Desactivamos el 'wrap' para volver a la disposición horizontal de una sola línea */
+        flex-wrap: nowrap;
+        /* Quitamos el gap vertical extra */
+        gap: 0 1rem; 
+    }
+
+    .line-title {
+        /* Le damos un ancho fijo o máximo para que no empuje los botones */
+        max-width: 300px;
+        flex-grow: 0;
+        flex-basis: auto;
+    }
+    
+    .line-actions-container {
+        /* El contenedor de acciones toma solo el espacio necesario para los botones */
+        flex-grow: 0;
+        flex-basis: auto;
+        /* Volvemos a usar solo gap para espaciar los botones y mantenerlos agrupados */
+        justify-content: flex-start;
+        /* Volvemos al orden normal (en medio) */
+        order: initial;
+    }
+}

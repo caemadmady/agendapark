@@ -1,0 +1,83 @@
+/* src/features/admin/components/AdminAppointmentCard.css */
+
+.admin-appointment-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border-left: 5px solid #e5e7eb; /* Borde por defecto */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+.admin-appointment-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Colores de borde por estado */
+.status-border-programada { border-left-color: #f59e0b; }
+.status-border-confirmada { border-left-color: #22c55e; }
+.status-border-cancelada { border-left-color: #ef4444; }
+.status-border-completada { border-left-color: #6b7280; }
+
+.card-main-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.talent-name { font-size: 1.2rem; font-weight: 600; color: #111827; }
+.expert-name { color: #4b5563; margin: -0.2rem 0 1rem 0; }
+
+.time-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+.time-info span { display: flex; align-items: center; gap: 0.5rem; }
+
+.extra-info { margin-top: 1rem; }
+.extra-info strong { font-weight: 500; color: #374151; }
+.extra-info p { color: #4b5563; }
+
+.equipment-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+.equipment-tag {
+  background-color: #f3e8ff;
+  color: #7e22ce;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+.equipment-tag em { font-style: normal; opacity: 0.8; }
+
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  min-width: 120px;
+}
+
+.action-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.btn-confirm { border-color: #16a34a; color: #16a34a; background: none; }
+.btn-confirm:hover { background-color: #16a34a; color: white; }
+.btn-cancel { border-color: #dc2626; color: #dc2626; background: none; }
+.btn-cancel:hover { background-color: #dc2626; color: white; }
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+.badge-cancelled { background-color: #fee2e2; color: #b91c1c; }
+.badge-completed { background-color: #f3f4f6; color: #4b5563; }
+.badge-confirmed { background-color: #dcfce7; color: #166534; }
