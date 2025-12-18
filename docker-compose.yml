@@ -60,7 +60,7 @@ services:
       context: ./nginx
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8082:80"
     depends_on:
       - pagina_web
       - servidor_web
