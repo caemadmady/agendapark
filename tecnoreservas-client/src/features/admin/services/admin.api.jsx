@@ -7,10 +7,34 @@ export async function getTalent() {
   return data;
 }
 
+//Crear talento
+export async function createTalent(talentData) {
+  const { data } = await api.post(`/talents/create`, talentData);
+  return data;
+}
+
 
 /*Llamadas a la api para el CRUD de los Expertos*/
+//Traer los datos de un experto por id
 export async function getExpert() {
   const { data } = await api.get(`/experts/all`);
+  return data;
+}
+
+//Actualizar el email de un experto 
+export async function updateExpertEmail(id, email) {
+  const { data } = await api.patch(`/experts/update/email/${id}`, email);
+  return data;
+}
+
+//Actualizar la contraseña de un experto
+export async function updateExpertPassword(id, password) {
+  const { data } = await api.patch(`/experts/update/email/${id}`, password);
+  return data;
+}
+
+export async function createExpert(expertData) {
+  const { data } = await api.post(`/experts/create-expert`, expertData);
   return data;
 }
 
@@ -31,6 +55,12 @@ export async function getAllLines() {
 // Crear un nuevo Usuario
 export async function createUser(userData) {
   const { data } = await api.post(`/register`, userData);
+  return data;
+}
+
+//traer todos los usuarios
+export async function getAllUsers() {
+  const { data } = await api.get(`/users/all`);
   return data;
 }
 

@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { FaUserPlus, FaTimes } from "react-icons/fa";
 import "../styles/CreateUserModal.css";
-import { createUser, getAllLines } from "../services/admin.api";
+import { createExpert, createUser } from "../services/admin.api";
 
 const CreateUserModal = ({ isOpen, onClose, onUserCreated, lines }) => {
   const [formData, setFormData] = useState({
-    name: "", lastName: "", email: "", username: "", password: "",
-    userRole: "Talento", projectLine: ""
+    name: "", lastname: "", email: "", username: "", password: "",
+    userRole: "", line: ""
   });
   const [loadingLines, setLoadingLines] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  const roleIsExperto = formData.userRole === "Experto";
+  const roleIsExperto = formData.userRole === "EXPERT";
 
   useEffect(() => {
     if (isOpen) {
       setFormData({
-        name: "", lastName: "", email: "", username: "", password: "",
-        userRole: "Talento", projectLine: ""
+        name: "", lastname: "", email: "", username: "", password: "",
+        userRole: "", line: ""
       });
     }
   }, [isOpen]);
@@ -37,8 +37,8 @@ const CreateUserModal = ({ isOpen, onClose, onUserCreated, lines }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "userRole" && value !== "Experto") {
-      setFormData((p) => ({ ...p, userRole: value, projectLine: "" }));
+    if (name === "userRole" && value !== "EXPERT") {
+      setFormData((p) => ({ ...p, userRole: value }));
       return;
     }
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -46,15 +46,38 @@ const CreateUserModal = ({ isOpen, onClose, onUserCreated, lines }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (roleIsExperto && !formData.projectLine) {
+    if (roleIsExperto && !formData.line) {
       alert("Selecciona la línea de proyecto para el rol Experto.");
       return;
     }
     try {
       setSaving(true);
-      const created = await createUser(formData);
-      onUserCreated?.(created);
-      onClose();
+
+      // Crear una copia de formData sin la propiedad line si no es Experto
+      const dataToSend = roleIsExperto ? formData : (() => {
+        const { line, ...rest } = formData;
+        return rest;
+      })();
+
+      if (dataToSend.userRole === "EXPERT") {
+        // Llamar a la función de creación de experto
+        const created = await createExpert(dataToSend);
+        console.log("Usuario experto creado:", created);
+        onUserCreated?.(created);
+        onClose();
+      }
+      if (dataToSend.userRole === "TALENT") {
+        // Llamar a la función de creación de talento
+        alert("Lo siento, la creación de talentos solo es posible mediante el experto asignado.");
+        onClose();
+      }
+      if (dataToSend.userRole === "SUPERADMIN" || dataToSend.userRole === "SECURITY") {
+        const created = await createUser(dataToSend);
+        console.log("Usuario creado:", created);
+        onUserCreated?.(created);
+        onClose();
+      }
+
     } catch (err) {
       console.error("Error creando usuario:", err);
       alert(err?.response?.data?.message || "No se pudo crear el usuario.");
@@ -81,8 +104,8 @@ const CreateUserModal = ({ isOpen, onClose, onUserCreated, lines }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="lastName">Apellidos</label>
-            <input id="lastName" name="lastName" value={formData.lastName}
+            <label htmlFor="lastname">Apellidos</label>
+            <input id="lastname" name="lastname" value={formData.lastname}
               onChange={handleChange} placeholder="Apellido completo" required type="text" />
           </div>
 
@@ -105,19 +128,19 @@ const CreateUserModal = ({ isOpen, onClose, onUserCreated, lines }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="role">Rol</label>
-            <select id="role" name="userRole" value={formData.role} onChange={handleChange}>
-              <option value="Talento">Talento</option>
-              <option value="Experto">Experto</option>
-              <option value="Recepción">Recepción</option>
-              <option value="Administrador">Administrador</option>
+            <label htmlFor="userRole">Rol</label>
+            <select id="userRole" name="userRole" value={formData.userRole} onChange={handleChange}>
+              <option value="TALENT">Talento</option>
+              <option value="EXPERT">Experto</option>
+              <option value="SECURITY">Recepción</option>
+              <option value="SUPERADMIN">Administrador</option>
             </select>
           </div>
 
           {roleIsExperto && (
             <div className="form-group">
-              <label htmlFor="projectLine">Línea de Proyecto *</label>
-              <select id="projectLine" name="projectLine" value={formData.projectLine}
+              <label htmlFor="line">Línea de Proyecto *</label>
+              <select id="line" name="line" value={formData.line}
                 onChange={handleChange} required disabled={loadingLines}>
                 <option value="" disabled>
                   {loadingLines ? "Cargando líneas..." : "Seleccionar línea"}

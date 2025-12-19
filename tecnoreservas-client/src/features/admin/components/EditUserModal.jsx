@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FaUserEdit, FaTimes } from "react-icons/fa";
 import "../styles/CreateUserModal.css";
-import { getAllLines, updateUser } from "../services/admin.api.jsx";
+import { updateExpertEmail, updateExpertPassword, updateUser } from "../services/admin.api.jsx";
 
-const EditUserModal = ({ isOpen, onClose, userToEdit, onUserUpdated }) => {
+const EditUserModal = ({ isOpen, lines, onClose, userToEdit, onUserUpdated }) => {
   const [formData, setFormData] = useState({
     name: "", email: "", username: "", password: "",
     role: "Talento", projectLine: ""
   });
-  const [lines, setLines] = useState([]);
+
+  useEffect(() => { console.log(`userToEdit:`, userToEdit) }, [userToEdit]);
+
   const [loadingLines, setLoadingLines] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -22,31 +24,19 @@ const EditUserModal = ({ isOpen, onClose, userToEdit, onUserUpdated }) => {
         username: userToEdit.username ?? "",
         password: "",
         role: userToEdit.role ?? "Talento",
-        projectLine: userToEdit.linea?.id ?? userToEdit.line ?? userToEdit.serviceLineId ?? "",
+        projectLine: userToEdit.lineId ?? userToEdit.line ?? userToEdit.serviceLineId ?? "",
       });
     }
   }, [isOpen, userToEdit]);
 
   useEffect(() => {
     if (!isOpen || !roleIsExperto || lines.length) return;
-    (async () => {
-      try {
-        setLoadingLines(true);
-        const data = await getAllLines();
-        setLines(data || []);
-      } catch (e) {
-        console.error("Error cargando líneas:", e);
-        setLines([]);
-      } finally {
-        setLoadingLines(false);
-      }
-    })();
-  }, [isOpen, roleIsExperto, lines.length]);
+  }, [isOpen, roleIsExperto, lines]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "role" && value !== "Experto") {
-      setFormData((p) => ({ ...p, role: value, projectLine: "" }));
+      setFormData((p) => ({ ...p, role: value }));
       return;
     }
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -61,9 +51,22 @@ const EditUserModal = ({ isOpen, onClose, userToEdit, onUserUpdated }) => {
     }
     try {
       setSaving(true);
-      const updated = await updateUser(userToEdit.id, formData);
-      onUserUpdated?.(userToEdit.id, updated);
-      onClose();
+      //si el usuario es un experto, actualizar el email y contraseña
+      if (userToEdit.role === "Experto") {
+        if (userToEdit.email !== formData.email) {
+          const data = { email: formData.email };
+          const expertUpdate = await updateExpertEmail(userToEdit.id, data);
+          console.log("Expert email updated:", expertUpdate);
+          onUserUpdated?.(userToEdit.id, expertUpdate);
+        }
+        if (userToEdit.password !== formData.password && formData.password.trim() !== "") {
+          const data = { password: formData.password };
+          const expertUpdate = await updateExpertPassword(userToEdit.id, data);
+          console.log("Expert password updated:", expertUpdate);
+          onUserUpdated?.(userToEdit.id, expertUpdate);
+        }
+        onClose();
+      }
     } catch (err) {
       console.error("Error actualizando usuario:", err);
       alert(err?.response?.data?.message || "No se pudo actualizar el usuario.");
@@ -86,7 +89,7 @@ const EditUserModal = ({ isOpen, onClose, userToEdit, onUserUpdated }) => {
           <div className="form-group">
             <label htmlFor="edit-name">Nombre Completo</label>
             <input id="edit-name" name="name" value={formData.name}
-              onChange={handleChange} required type="text" />
+              onChange={handleChange} required type="text" disabled readOnly />
           </div>
 
           <div className="form-group">
@@ -98,7 +101,7 @@ const EditUserModal = ({ isOpen, onClose, userToEdit, onUserUpdated }) => {
           <div className="form-group">
             <label htmlFor="edit-username">Usuario</label>
             <input id="edit-username" name="username" value={formData.username}
-              onChange={handleChange} required type="text" />
+              onChange={handleChange} required type="text" disabled readOnly />
           </div>
 
           <div className="form-group">
@@ -110,24 +113,20 @@ const EditUserModal = ({ isOpen, onClose, userToEdit, onUserUpdated }) => {
 
           <div className="form-group">
             <label htmlFor="edit-role">Rol</label>
-            <select id="edit-role" name="role" value={formData.role} onChange={handleChange}>
-              <option value="Talento">Talento</option>
-              <option value="Experto">Experto</option>
-              <option value="Recepción">Recepción</option>
-              <option value="Administrador">Administrador</option>
-            </select>
+            <input id="edit-role" name="role" value={formData.role}
+              type="text" disabled readOnly />
           </div>
 
           {roleIsExperto && (
             <div className="form-group">
               <label htmlFor="edit-projectLine">Línea de Proyecto *</label>
               <select id="edit-projectLine" name="projectLine" value={formData.projectLine}
-                onChange={handleChange} required disabled={loadingLines}>
-                <option value="" disabled>
+                onChange={handleChange} required disabled={true}>
+                <option value="" disabled readOnly>
                   {loadingLines ? "Cargando líneas..." : "Seleccionar línea"}
                 </option>
                 {lines.map((l) => (
-                  <option key={l.id} value={l.id}>{l.label}</option>
+                  <option key={l.id} value={l.id}>{l.name}</option>
                 ))}
               </select>
             </div>
